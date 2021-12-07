@@ -8,15 +8,7 @@ namespace Padel
 
         public void Increase()
         {
-            if (_Score < 30)
-            {
-                _Score += 15;
-            }
-            else
-            {
-                _Score += 10;
-
-            }
+            _Score += 1;
         }
     }
 }

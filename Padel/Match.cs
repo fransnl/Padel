@@ -22,9 +22,7 @@ namespace Padel
 
         public void Point(Player player)
         {
-            Set set = new Set();
-            set.Point(player);
-            _sets.Add(set);
+            _sets[0].Point(player);
         }
 
         public Score MatchScore()

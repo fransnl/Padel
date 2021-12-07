@@ -22,65 +22,57 @@ namespace PadelTest
 
             Assert.Equal(3, match._sets.Count);
         }
+        
+        [Fact]
+        public void MatchScoreTest() 
+        {
+            
+        }
+
         #endregion
 
         #region Set test
         /// <summary>
-        /// Returned false, list was out of bounds
-        /// Changed Set.Point() method
+        /// Calls set.Point method for one player and both players
+        /// Compares the expected score to score in list _game on the 0 position
         /// </summary>
-        [Fact]
-        public void SetListTest() 
-        {
-            Set set = new Set();
-
-            for (int i = 0; i < 3; i++)
-            {
-                set.Point(new Player("Lars"));
-            }
-
-            Assert.Equal(3, set._games.Count);
-        }
-
         [Theory]
-        [InlineData(3, 0, 40, 0)]
-        [InlineData(0, 3, 0, 40)]
-        [InlineData(2, 1, 30, 15)]
+        [InlineData(1, 0, 1, 0)]
+        //[InlineData(0, 1, 1, 0)]
+        //[InlineData(1, 1, 1, 1)]
         public void SetPointTest(int player1GameScore, int player2GameScore, int player1Expected, int player2Expected) 
         {
-            int player1TotScore = 0;
-            int player2TotScore = 0;
 
             Player player1 = new Player("Sten");
             Player player2 = new Player("Bertil");
 
             Set set = new Set();
 
-            for (int i = 0; i < player1GameScore; i++)
+            if (player1GameScore > 0 )
             {
                 set.Point(player1);
-                player1TotScore = set._games[i].Score(player1)._Score;
+                int player1TotScore = set._games[0].Score(player1)._Score;
+                Assert.Equal(player1Expected, player1TotScore);
             }
-            for (int i = 0; i < player2GameScore; i++)
+            if (player2GameScore > 0)
             {
                 set.Point(player2);
-                player2TotScore = set._games[i].Score(player2)._Score;
+                int player2TotScore = set._games[0].Score(player2)._Score;
+                Assert.Equal(player2Expected, player2TotScore);
             }
 
-            Assert.Equal(player1Expected, player1TotScore);
-            Assert.Equal(player2Expected, player2TotScore);
+
         }
         #endregion
 
         #region Game Class
         [Theory]
-        [InlineData(0, 50, "Player 1 wins")]
-        [InlineData(1, 50, "Player 2 wins")]
+        [InlineData(0, 4, "Player 1 wins")]
+        [InlineData(1, 4, "Player 2 wins")]
         public void GameTest(int gameCase, int expScore, string expectedScoreString) 
         {
             Player player1 = new Player("Sten");
             Player player2 = new Player("Bertil");
-
 
             Game game = new Game(player1, player2);
 
@@ -146,9 +138,9 @@ namespace PadelTest
         /// </summary>
         public static IEnumerable<object[]> ScoreData()
         {
-            yield return new object[] { 1, 15 };
-            yield return new object[] { 2, 30 };
-            yield return new object[] { 3, 40 };
+            yield return new object[] { 1, 1 };
+            yield return new object[] { 2, 2 };
+            yield return new object[] { 3, 3 };
         }
     }
 }

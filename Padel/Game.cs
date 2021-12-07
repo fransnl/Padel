@@ -25,15 +25,12 @@ namespace Padel
 
         public string ScoreString()
         {
-            //changed from score > 40 from score > 4
-            if (_player1.Score._Score > 40)
+            if (_player1.Score._Score > 3)
             {
                 return "Player 1 wins";
             }
 
             return "Player 2 wins";
-            
-
         }
     }
 }
