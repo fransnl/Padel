@@ -4,8 +4,9 @@ namespace Padel
 {
     public class Player
     {
-        public string Name { set; get; }
-        public Score Score { set; get; } = new Score();
+        //Made properties to access in test
+        public string Name { private set; get; }
+        public Score Score { private set; get; } = new Score();
         
         public Player(string name)
         {

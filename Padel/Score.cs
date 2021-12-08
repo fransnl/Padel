@@ -8,7 +8,7 @@ namespace Padel
 
         public void Increase()
         {
-            _Score += 1;
+            _Score++;
         }
     }
 }
