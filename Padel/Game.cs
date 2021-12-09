@@ -8,6 +8,7 @@ namespace Padel
         public Player _player1 { get; }
         public Player _player2 { get; }
 
+        //changed to _player2 = player2 instead of _player1 = player2
         public Game(Player player1, Player player2)
         {
             _player1 = player1;
@@ -26,7 +27,7 @@ namespace Padel
             return player.Score;
         }
 
-        //changed to _player1.Score._Score > 3 because you win a game with 15+15+10
+        //changed to _player1.Score._Score > 3 because you win a game when you get more than 15+15+10
         public string ScoreString()
         {
             if (_player1.Score._Score > 3)

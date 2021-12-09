@@ -11,7 +11,7 @@ namespace PadelTest
         /// Tests if in parameters in constructor matches
         /// </summary>
         [Fact]
-        public void SetConstructorTest()
+        public void GameConstructorTest()
         {
             Player player1 = new Player("Göran");
             Player player2 = new Player("Albert");
@@ -51,6 +51,32 @@ namespace PadelTest
 
             Assert.Equal(expectedScoreString, game.ScoreString());
 
+        }
+
+        [Fact]
+        public void ScoreStringReturnsStringTrue()
+        {
+            Player player1 = new Player("Alejandro");
+            Player player2 = new Player("Mimmi");
+
+            Game game = new Game(player1, player2);
+
+            game.Point(player1);
+
+            bool isString;
+
+            if (game.ScoreString() is string)
+            {
+                isString = true;
+            }
+            else
+            {
+                isString = false;
+            }
+
+            Assert.True(isString);
+            Assert.NotNull(game.ScoreString());
+            Assert.NotEmpty(game.ScoreString());
         }
     }
 }

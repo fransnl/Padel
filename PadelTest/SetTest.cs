@@ -50,12 +50,10 @@ namespace PadelTest
 
             if (player1GameScore == 1)
             {
-                //gives out of range exception
                 set.Point(player1);
             }
             if (player2GameScore == 1)
             {
-                //gives out of range exception
                 set.Point(player2);
             }
 

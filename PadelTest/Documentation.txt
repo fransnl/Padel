@@ -1,0 +1,67 @@
+﻿Dokumentation grupp Gullviva, Testning
+
+https://github.com/fransnl/Padel
+
+Delaktiga: Frans Nilsson Lidström, Sophie Lindström, Ghasem Soltani och Pontus Hedman
+
+Vi har alla varit delaktiga i alla delar av projektet och jobbat med testerna som en grupp.
+Vi har arbetat på plats under den avsedda tiden på skolan samt över discord där en har skärmdelat
+så att vi alla kan diskutera hur testerna skulle utföras tillsammans.
+
+Vi började med klassen Score sedan Player, Game, Set och tillslut Match. Vi valde denna ording eftersom
+vi ansåg att det var det bästa sättet att testa de olika klasserna och med säkerhet veta att om ett test
+kom tillbaks som fel så visste vi att det inte var de underliggande klasserna som hade felet.
+
+Klass Score:
+
+Till en början ändrade vi denna klass eftersom poängen i padel fungerar så att om en vinner de första
+två "runderna" i ett game tilldelas 15 poäng till spelaren och efter det tilldelas 10 poäng. Men eftersom 
+de andra klasserna använder samma klass för att hålla reda på poäng som endast ökar med 1 poäng per vinst 
+så ändrade vi tillbaks det. Vi tänker om en skriver en klass som innehåller game loopen konverteras de poängen 
+i ett game där.
+
+Vi fick inga fel när vi testade denna klass så inget är ändrat.
+
+Klass Player:
+
+I denna klass fick vi en ObjectNullReference i PlayerPointScoreTest() eftersom vi inte instantierade ett nytt 
+objekt av Score. Vi fixade detta genom att ändra i klassen Player på rad 8 så vi la till "= new Score();" 
+
+Vi testade även i PlayerNameTest() om string in parametern sparades i Player.Name på rätt sätt genom att kolla
+om Player.Name var null, emty och om den var lika med en string som vi gav som in parameter i konstruktorn.
+Vi fick inga fel i detta test.
+
+Klass Game:
+
+Vi ändrade _player1 och _player2 till properties så vi kunde använda de i testet. 
+Vi testade först konstruktorn om de Player instanserna vi använde som in parametrar stämde överens med att de 
+skulle tilldelas till _player1 och _player2 i klassen men vi fick ett fel att den andra Player instansen i 
+konstruktorn inte stämde överens med _player2. Vi fixade detta genom att ändra så att _player2 = player2 istället 
+för _player1 = player2.
+
+Vi testade Point(), Score() och ScoreString genom att testa att Point() gav poäng till vardera Player och sedan
+kollade om det Score() och ScoreString() returnerade stämde överens. Vi fick ObjectNullReferenceException på båda.
+Vi fixade detta genom att ändra i Point() så att den kör Player.Point() för den player vi tar som in parameter
+istället för endast _player1. Vi la till en in parameter för en player i Score() och gjorde samma där.
+Vi ändrade även ScoreString så att en spelare vinner över 3 poäng.
+
+Vi testade sist om ScoreString() returnerar en string, om den är inte null eller om den inte är emty, vi fick inget
+fel på detta.
+
+Klass Set:
+
+Vi gjorde _games till en property för att använda den i testet. Vi testade Set.Point genom att ge poäng till en 
+player och sedan till båda i samma set. Vi gjorde detta för att vi ansåg att båda spelarna inte kan få poäng i 
+samma set. Vi fick OutOfRangeException på båda testerna, vi fixade detta genom att skapa en konstruktor som
+specificerade att det skulle vara 6 platser i listan, konstruktorn tar två players som in parameter och lägger 
+till dem i varje game i listan _game. Sedan sparar vi spelarna i vardera field variabel.
+Sedan testade vi konstruktorn i två tester, första genom att kolla om det är 6 platser i listan och i andra om
+de player vi tar som in parameter stämmer överens med de vi sparat. Vi fick inga fel på dessa tester.
+
+Klass Match:
+
+Vi gjorde _sets till en property för att använda den i testerna. Vi ändrade även här så att inte båda spelarna kunde
+få poäng i samma set. Vi testade om listan hade lika många platser som de sets vi specificerade i in parametern att 
+det skulle finnas, om spelarna vi hade som in parameter stämde överens, om båda spelarna kunde få poäng i samma set
+och om MatchScore() returnerade ett nytt score som vi kunde öka poängen på. Vi fick inga fel eftersom vi ändrade 
+logiken i Match.Point() från vår erfarenhet från klassen Set.

@@ -11,7 +11,7 @@ namespace PadelTest
         /// Tests in parameters match with Player.Name
         /// </summary>
         [Fact]
-        public void PlayerName()
+        public void PlayerNameTest()
         {
             Player player = new Player("Gustaf");
 

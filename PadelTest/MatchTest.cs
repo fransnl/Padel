@@ -38,7 +38,7 @@ namespace PadelTest
         [Theory]
         [InlineData(1, 0, 1, 0)]
         [InlineData(1, 1, 1, 0)]
-        public void SetPointTest(int player1SetScore, int player2SetScore, int player1Expected, int player2Expected)
+        public void MatchPointTest(int player1SetScore, int player2SetScore, int player1Expected, int player2Expected)
         {
 
             Player player1 = new Player("Sten");
